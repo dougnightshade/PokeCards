@@ -1,5 +1,6 @@
 package com.manickchand.pokecards.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -10,6 +11,7 @@ import com.manickchand.pokecards.model.PokemonModel
 import com.manickchand.pokecards.repository.PokeCardsRemoteSource
 import com.manickchand.pokecards.repository.RetrofitInit.getClient
 import com.manickchand.pokecards.ui.detail.DetailDialogFragment
+import com.manickchand.pokecards.utils.PokeCardsService
 import com.manickchand.pokecards.utils.showToast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.header.*
@@ -101,6 +103,12 @@ class MainActivity : AppCompatActivity(), MainListener {
         allPokemonsList.filter { it.name.toLowerCase().contains(filterStr.toLowerCase()) }
      } ?: allPokemonsList
         showItems(pokemonsFiltered)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        val intent = Intent(this, PokeCardsService::class.java)
+        startService(intent)
     }
 
 }

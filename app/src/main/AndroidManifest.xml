@@ -11,6 +11,9 @@
         android:roundIcon="@drawable/ic_pokeball"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <service android:name=".utils.PokeCardsService"/>
+
         <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
